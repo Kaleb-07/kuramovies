@@ -1,0 +1,400 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================
+   KURA FILMS — CINEMATIC THEME SYSTEM
+========================================================= */
+
+@layer base {
+  :root {
+    /* ========================================
+       BRAND COLORS
+    ======================================== */
+    --color-primary: #d4af37;
+    --color-primary-hover: #c29b24;
+    --color-secondary: #b31217;
+    --color-secondary-hover: #8f0d12;
+    --color-tertiary: #1c1c1c;
+    --color-tertiary-hover: #2b2b2b;
+
+    /* ========================================
+       CINEMATIC GRAYS
+    ======================================== */
+    --color-slate-50: #f8fafc;
+    --color-slate-100: #f1f5f9;
+    --color-slate-200: #e2e8f0;
+    --color-slate-300: #cbd5e1;
+    --color-slate-400: #94a3b8;
+    --color-slate-500: #64748b;
+    --color-slate-600: #475569;
+    --color-slate-700: #334155;
+    --color-slate-800: #111111;
+    --color-slate-900: #050505;
+    --color-slate-950: #020202;
+  }
+}
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ========================================
+     GLASSMORPHISM
+  ======================================== */
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ========================================
+     CINEMATIC OVERLAY
+  ======================================== */
+  .cinematic-overlay {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.95),
+      rgba(0, 0, 0, 0.45)
+    );
+  }
+
+  /* ========================================
+     GOLD GLOW
+  ======================================== */
+  .gold-glow {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.25),
+      0 0 40px rgba(212, 175, 55, 0.15);
+  }
+
+  /* ========================================
+     TEXT GRADIENT
+  ======================================== */
+  .text-gradient {
+    background: linear-gradient(to right, #d4af37, #fff3c4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ========================================
+     MOVIE CARD HOVER
+  ======================================== */
+  .movie-card-hover {
+    transition: all 0.4s ease;
+  }
+
+  .movie-card-hover:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  /* ========================================
+     HERO SPACING
+  ======================================== */
+  .section-spacing {
+    padding: 120px 0;
+  }
+}
+
+/* =========================================================
+   GLOBAL HTML
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  top: 0 !important;
+  background: #050505;
+  color: #f5f5f5;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   GOOGLE TRANSLATE HIDE
+========================================================= */
+
+#google_translate_element,
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+.goog-te-gadget-simple,
+.goog-te-gadget-icon,
+.goog-te-spinner-pos,
+.goog-te-spinner,
+iframe.goog-te-banner-frame,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+iframe[src*="translate.googleapis.com"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+/* =========================================================
+   CUSTOM ANIMATIONS
+========================================================= */
+
+@layer utilities {
+  /* ========================================
+     MARQUEE
+  ======================================== */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .trusted-marquee {
+    width: fit-content;
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  .trusted-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  /* ========================================
+     SPIN SLOW
+  ======================================== */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .badge-spin {
+    animation: spin-slow 14s linear infinite;
+    will-change: transform;
+  }
+
+  /* ========================================
+     FADE UP
+  ======================================== */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 1s ease forwards;
+  }
+
+  /* ========================================
+     HERO ZOOM
+  ======================================== */
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  .hero-zoom {
+    animation: hero-zoom 14s ease-in-out infinite alternate;
+  }
+
+  /* ========================================
+     FLOATING
+  ======================================== */
+  @keyframes floating {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .floating {
+    animation: floating 5s ease-in-out infinite;
+  }
+}
+
+/* =========================================================
+   SHADCN THEME VARIABLES
+========================================================= */
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* =========================================================
+   LIGHT MODE
+========================================================= */
+
+:root {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.16 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0 0);
+  --primary: oklch(0.75 0.13 82);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.95 0 0);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.95 0 0);
+  --accent-foreground: oklch(0.2 0 0);
+  --destructive: oklch(0.6 0.22 25);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.75 0.13 82);
+  --chart-1: oklch(0.75 0.13 82);
+  --chart-2: oklch(0.6 0 0);
+  --chart-3: oklch(0.45 0 0);
+  --chart-4: oklch(0.35 0 0);
+  --chart-5: oklch(0.25 0 0);
+  --radius: 1rem;
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.16 0 0);
+  --sidebar-primary: oklch(0.75 0.13 82);
+  --sidebar-primary-foreground: oklch(0.1 0 0);
+  --sidebar-accent: oklch(0.95 0 0);
+  --sidebar-accent-foreground: oklch(0.2 0 0);
+  --sidebar-border: oklch(0.88 0 0);
+  --sidebar-ring: oklch(0.75 0.13 82);
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark {
+  --background: oklch(0.14 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.18 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.18 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.75 0.13 82);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.24 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.72 0 0);
+  --accent: oklch(0.22 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.68 0.22 25);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.75 0.13 82);
+  --chart-1: oklch(0.75 0.13 82);
+  --chart-2: oklch(0.55 0 0);
+  --chart-3: oklch(0.42 0 0);
+  --chart-4: oklch(0.32 0 0);
+  --chart-5: oklch(0.22 0 0);
+  --sidebar: oklch(0.18 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.75 0.13 82);
+  --sidebar-primary-foreground: oklch(0.1 0 0);
+  --sidebar-accent: oklch(0.24 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.75 0.13 82);
+}
+
+/* =========================================================
+   BASE STYLES
+========================================================= */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-[#050505] text-[#f5f5f5];
+    font-family: var(--font-sans);
+  }
+
+  html {
+    @apply font-sans;
+  }
+}
