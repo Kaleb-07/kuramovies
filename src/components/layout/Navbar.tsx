@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, MapPin, Mail, Globe, Search } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import LanguageSelector from '../ui/LanguageSelector';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,13 +50,7 @@ const Navbar = () => {
           {/* Right - Language & Social */}
           <div className="flex items-center gap-4 ml-auto">
             {/* Language Selector */}
-            <button className="flex items-center gap-1.5 hover:text-[#d4af37] transition-colors">
-              <Globe size={14} />
-              <span>Language</span>
-              <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor">
-                <path d="M5 6L0 0h10L5 6z" />
-              </svg>
-            </button>
+            <LanguageSelector variant="topbar" />
 
             {/* Social Icons */}
             <div className="hidden md:flex items-center gap-3 ml-2 pl-4 border-l border-white/20">
