@@ -488,7 +488,7 @@ const Projects: React.FC = () => {
       {/* ============================================
           4. ALL PROJECTS GRID
       ============================================ */}
-      <section className="py-24 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
+      <section className="py-10 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle={activeCategory === 'All' ? 'Portfolio' : activeCategory}
@@ -526,7 +526,7 @@ const Projects: React.FC = () => {
               </div>
 
               {regularProjects.length === 0 && (
-                <div className="text-center py-20">
+                <div className="text-center py-10">
                   <p className="text-slate-400 text-lg">No projects found with this filter set.</p>
                 </div>
               )}
@@ -559,7 +559,7 @@ const Projects: React.FC = () => {
       {/* ============================================
           6. AWARDS & RECOGNITIONS (streamlined recognition band)
       ============================================ */}
-      <section className="py-16 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
+      <section className="py-10 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Recognition"
@@ -593,7 +593,7 @@ const Projects: React.FC = () => {
       {/* ============================================
           7. CLIENT TESTIMONIALS
       ============================================ */}
-      <section className="py-24 px-6 bg-[#050505]">
+      <section className="py-10 px-6 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Client Stories"

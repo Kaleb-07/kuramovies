@@ -31,7 +31,7 @@ const Pricing = () => {
         // <>Choose a service, compare Normal, Standard, and Pro, and let clients understand exactly what they get at each level. Each package scales from a lean setup to a complete production solution.</>
       />
 
-      <section className="py-24 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
+      <section className="py-10 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[360px_1fr] gap-8 items-start">
           <div className="lg:sticky lg:top-28 space-y-4">
             <div className="mb-6">
@@ -175,7 +175,7 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a] border-t border-white/5">
+      <section className="py-10 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a] border-t border-white/5">
         <div className="max-w-7xl mx-auto rounded-[32px] border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-sm">
           <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
             <div>

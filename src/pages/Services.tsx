@@ -400,7 +400,7 @@ const Services: React.FC = () => {
       {/* ============================================
           2. CLIENTS & PARTNERS (Moved from section 7)
       ============================================ */}
-      <section className="py-16 px-6 bg-[#050505] overflow-hidden border-b border-white/5">
+      <section className="py-10 px-6 bg-[#050505] overflow-hidden border-b border-white/5">
         <div className="max-w-7xl mx-auto mb-8">
           <p className="text-center text-slate-500 text-sm uppercase tracking-widest mb-8">
             Trusted by Leading Brands & Organizations
@@ -487,7 +487,7 @@ const Services: React.FC = () => {
       {/* ============================================
           3. SERVICES OVERVIEW (Previously section 2)
       ============================================ */}
-      <section className="relative py-24 px-6 bg-[#050505] overflow-hidden">
+      <section className="relative py-10 px-6 bg-[#050505] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Content */}
@@ -618,7 +618,7 @@ const Services: React.FC = () => {
       {/* ============================================
           4. CORE SERVICES (MAIN SECTION) (Previously section 3)
       ============================================ */}
-      <section className="py-24 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
+      <section className="py-10 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle="What We Offer"
@@ -638,7 +638,7 @@ const Services: React.FC = () => {
       {/* ============================================
           5. PRODUCTION PROCESS / WORKFLOW (Previously section 4)
       ============================================ */}
-      <section className="py-24 px-6 bg-[#0a0a0a]">
+      <section className="py-10 px-6 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle="Our Approach"
@@ -663,7 +663,7 @@ const Services: React.FC = () => {
       {/* ============================================
           6. WHY CHOOSE KURA FILMS (Previously section 5)
       ============================================ */}
-      <section className="py-24 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
+      <section className="py-10 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle="What Sets Us Apart"
@@ -683,7 +683,7 @@ const Services: React.FC = () => {
       {/* ============================================
           7. SELECTED WORK FROM SERVICES (Previously section 6)
       ============================================ */}
-      <section className="py-24 px-6 bg-[#050505]">
+      <section className="py-10 px-6 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-12">
             <SectionTitle 

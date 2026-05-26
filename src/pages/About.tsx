@@ -142,7 +142,7 @@ const About: React.FC = () => {
       {/* ============================================
           2. OUR STORY SECTION
       ============================================ */}
-      <section className="py-16 px-6 bg-[#050505]">
+      <section className="py-10 px-6 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             
@@ -207,7 +207,7 @@ const About: React.FC = () => {
       {/* ============================================
           3. MISSION & VISION SECTION
       ============================================ */}
-      <section className="py-16 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
+      <section className="py-10 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Our Purpose"
@@ -304,7 +304,7 @@ const About: React.FC = () => {
       {/* ============================================
           4. OUR VALUES SECTION
       ============================================ */}
-      <section className="py-16 px-6 bg-[#0a0a0a]">
+      <section className="py-10 px-6 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle="What Drives Us"
@@ -351,7 +351,7 @@ const About: React.FC = () => {
       {/* ============================================
           5. ACHIEVEMENTS & MILESTONES SECTION
       ============================================ */}
-      <section className="py-16 px-6 bg-linear-to-b from-[#0a0a0a] to-[#050505]">
+      <section className="py-10 px-6 bg-linear-to-b from-[#0a0a0a] to-[#050505]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Our Journey"
@@ -361,7 +361,7 @@ const About: React.FC = () => {
           />
 
           {/* Timeline */}
-          <div className="space-y-12 mb-24">
+          <div className="space-y-8 mb-12">
             <TimelineItem 
               year="2015"
               title="The Beginning"
@@ -413,7 +413,7 @@ const About: React.FC = () => {
       {/* ============================================
           6. CREATIVE PHILOSOPHY SECTION
       ============================================ */}
-      <section className="py-16 px-6 bg-[#050505] relative overflow-hidden">
+      <section className="py-10 px-6 bg-[#050505] relative overflow-hidden">
         {/* Background Accent */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-[#d4af37]/5 to-transparent" />
         
@@ -466,7 +466,7 @@ const About: React.FC = () => {
       {/* ============================================
           7. OUR TEAM TEASER SECTION
       ============================================
-      <section className="py-16 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
+      <section className="py-10 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle="The Visionaries"
@@ -512,7 +512,7 @@ const About: React.FC = () => {
       {/* ============================================
           8. GLOBAL IMPACT SECTION
       ============================================ */}
-      <section className="py-24 px-6 bg-[#0a0a0a]">
+      <section className="py-10 px-6 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Our Reach"

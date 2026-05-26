@@ -312,7 +312,7 @@ const Team: React.FC = () => {
       {/* ============================================
           2. LEADERSHIP TEAM
       ============================================ */}
-      <section className="py-24 px-6 bg-[#050505]">
+      <section className="py-10 px-6 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
             subtitle="Leadership"
@@ -339,7 +339,7 @@ const Team: React.FC = () => {
       {/* ============================================
           3. CREATIVE DEPARTMENTS FILTER
       ============================================ */}
-      <section className="py-16 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
+      <section className="py-10 px-6 bg-linear-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
             subtitle="Our Departments"
@@ -407,7 +407,7 @@ const Team: React.FC = () => {
       {/* ============================================
           4. TEAM CULTURE & PHILOSOPHY
       ============================================ */}
-      <section className="py-24 px-6 bg-[#0a0a0a]">
+      <section className="py-10 px-6 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left - Content */}
@@ -477,7 +477,7 @@ const Team: React.FC = () => {
       {/* ============================================
           5. BEHIND THE SCENES GALLERY
       ============================================ */}
-      <section className="py-24 px-6 bg-linear-to-b from-[#0a0a0a] to-[#050505]">
+      <section className="py-10 px-6 bg-linear-to-b from-[#0a0a0a] to-[#050505]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle
             subtitle="Behind The Scenes"

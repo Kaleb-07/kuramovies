@@ -102,7 +102,7 @@ const Home = () => {
       <Navbar />
 
       {/* ─── HERO ─── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-12">
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-12 pb-10">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1920&auto=format&fit=crop"
@@ -198,7 +198,7 @@ const Home = () => {
 
       
       {/* ─── FEATURED PROJECTS ─── */}
-      <section className="py-28 px-6">
+      <section className="py-10 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-end mb-14">
             <div>
@@ -248,7 +248,7 @@ const Home = () => {
       </section>
 
       {/* ─── SERVICES (Redesigned Departments-style) ─── */}
-      <section className="py-20 px-6">
+      <section className="py-10 px-6">
         <div className="max-w-7xl mx-auto relative">
           {/* Big rounded background */}
           <div className="rounded-[28px] bg-gradient-to-r from-[#3b2a1e] via-[#5a3f2c] to-[#3b2a1e] p-10 md:p-16 overflow-hidden">
@@ -290,7 +290,7 @@ const Home = () => {
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <section className="py-28 px-6 bg-[#050505]">
+      <section className="py-10 px-6 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-[#d4af37] text-xs uppercase tracking-[0.35em] mb-4 font-semibold">Client Stories</p>
@@ -438,7 +438,7 @@ const Home = () => {
 
       {/* ─── CTA ─── */}
       {/* ─── FEATURE HIGHLIGHT (New Section) ─── */}
-      <section className="py-24 px-6 bg-[#050505]">
+      <section className="py-10 px-6 bg-[#050505]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* Left - Framed Image */}
           <motion.div
@@ -495,7 +495,7 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-      <section className="py-40 relative overflow-hidden">
+      <section className="py-10 relative overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?q=80&w=1920&auto=format&fit=crop"

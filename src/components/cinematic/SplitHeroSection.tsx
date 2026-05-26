@@ -38,7 +38,7 @@ export const SplitHeroSection: React.FC<SplitHeroSectionProps> = ({
   const hasImage = Boolean(image);
 
   return (
-    <section className="relative min-h-[50vh] flex items-center overflow-hidden py-16 md:py-20">
+    <section className="relative min-h-[50vh] flex items-center overflow-hidden py-10 md:py-10">
       <div className="absolute inset-0">
         {image ? <img src={image} alt={imageAlt || ''} className="w-full h-full object-cover hero-zoom" /> : null}
         <div className="absolute inset-0 bg-linear-to-r from-[#48607a]/90 via-[#5e748a]/80 to-[#23425d]/90" />

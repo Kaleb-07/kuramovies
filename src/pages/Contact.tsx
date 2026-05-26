@@ -243,7 +243,7 @@ const Contact: React.FC = () => {
         {/* ============================================
           2. QUICK CONTACT OPTIONS
         ============================================ */}
-        <section className="py-12 px-6 bg-[#050505]">
+        <section className="py-10 px-6 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle="Get in Touch"
@@ -292,7 +292,7 @@ const Contact: React.FC = () => {
         {/* ============================================
           3. PROJECT INQUIRY FORM
         ============================================ */}
-        <section className="py-12 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
+        <section className="py-10 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-4xl mx-auto">
           <SectionTitle 
             subtitle="Start Your Project"
@@ -312,7 +312,7 @@ const Contact: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-12"
+                className="text-center py-10"
               >
                 <CheckCircle2 className="w-20 h-20 text-[#d4af37] mx-auto mb-6" />
                 <h3 className="text-3xl font-bold text-white mb-4">Thank You!</h3>
@@ -515,7 +515,7 @@ const Contact: React.FC = () => {
         {/* ============================================
           4. HOW WE WORK SECTION
         ============================================ */}
-        <section className="py-12 px-6 bg-[#0a0a0a]">
+        <section className="py-10 px-6 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Our Process"
@@ -556,7 +556,7 @@ const Contact: React.FC = () => {
         {/* ============================================
           5. FAQ SECTION
         ============================================ */}
-        <section className="py-12 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
+        <section className="py-10 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
         <div className="max-w-4xl mx-auto">
           <SectionTitle 
             subtitle="Common Questions"
@@ -603,7 +603,7 @@ const Contact: React.FC = () => {
         {/* ============================================
           6. OFFICE LOCATION SECTION
         ============================================ */}
-        <section id="map" className="py-12 px-6 bg-[#050505]">
+        <section id="map" className="py-10 px-6 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Visit Us"
@@ -681,7 +681,7 @@ const Contact: React.FC = () => {
       {/* ============================================
           7. SOCIAL MEDIA & CONNECT SECTION
       ============================================
-      <section className="py-24 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
+      <section className="py-10 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-4xl mx-auto text-center">
           <SectionTitle 
             subtitle="Stay Connected"
