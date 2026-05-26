@@ -461,7 +461,7 @@ const Team: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-150 rounded-3xl overflow-hidden"
+              className="relative hidden lg:block h-150 rounded-3xl overflow-hidden"
             >
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071"
