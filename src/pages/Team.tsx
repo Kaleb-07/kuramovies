@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Award,
@@ -237,11 +237,61 @@ const cultureValues = [
 
 const Team: React.FC = () => {
   const [activeDepartment, setActiveDepartment] = useState<string>('all');
+  const teamActionRef = useRef<HTMLDivElement | null>(null);
 
   const leadershipTeam = teamMembers.filter(member => member.isLeadership);
   const filteredMembers = activeDepartment === 'all' 
     ? teamMembers.filter(member => !member.isLeadership)
     : teamMembers.filter(member => member.department === activeDepartment && !member.isLeadership);
+
+  useEffect(() => {
+    const container = teamActionRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    let paused = false;
+
+    const scrollNext = () => {
+      if (paused) {
+        return;
+      }
+
+      const cards = Array.from(container.querySelectorAll<HTMLElement>('[data-team-action-card]'));
+      if (!cards.length) {
+        return;
+      }
+
+      const currentIndex = cards.findIndex((card) => {
+        const cardLeft = card.offsetLeft;
+        const containerLeft = container.scrollLeft;
+        return cardLeft >= containerLeft && cardLeft < containerLeft + container.clientWidth;
+      });
+
+      const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % cards.length : 0;
+      cards[nextIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    };
+
+    const intervalId = window.setInterval(scrollNext, 60000);
+
+    const handleMouseEnter = () => {
+      paused = true;
+    };
+
+    const handleMouseLeave = () => {
+      paused = false;
+    };
+
+    container.addEventListener('mouseenter', handleMouseEnter);
+    container.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      window.clearInterval(intervalId);
+      container.removeEventListener('mouseenter', handleMouseEnter);
+      container.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#050505]">
@@ -436,32 +486,41 @@ const Team: React.FC = () => {
             className="mb-16"
           />
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071',
-              'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2062',
-              'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059',
-              'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071',
-              'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070',
-              'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070'
-            ].map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="relative h-64 rounded-2xl overflow-hidden cursor-pointer group"
-              >
-                <img
-                  src={image}
-                  alt={`Behind the scenes ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </motion.div>
-            ))}
+          <div className="relative">
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-12 bg-linear-to-r from-[#050505] to-transparent z-10" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-12 bg-linear-to-l from-[#050505] to-transparent z-10" />
+
+            <div
+              ref={teamActionRef}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 px-1 scrollbar-none"
+            >
+              {[
+                'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071',
+                'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=2062',
+                'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059',
+                'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071',
+                'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070',
+                'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070'
+              ].map((image, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  whileHover={{ scale: 1.02 }}
+                  data-team-action-card
+                  className="relative h-72 sm:h-80 lg:h-96 w-[82vw] sm:w-[46vw] lg:w-[32%] flex-none snap-center rounded-2xl overflow-hidden cursor-pointer group"
+                >
+                  <img
+                    src={image}
+                    alt={`Behind the scenes ${index + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

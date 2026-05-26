@@ -205,82 +205,140 @@ const FilterBar: React.FC<{
   );
 };
 
-// Featured Project Card Component
-const FeaturedProjectCard: React.FC<{ project: Project; index: number }> = ({ 
-  project, 
-  index 
-}) => {
+// Desktop Sidebar Filter (unique design)
+const FilterSidebar: React.FC<{
+  categories: string[];
+  activeCategory: string;
+  onCategoryChange: (c: string) => void;
+  projectCounts?: { [key: string]: number };
+  years: string[];
+  yearFilter: string | 'All';
+  setYearFilter: (y: string | 'All') => void;
+  featuredOnly: boolean;
+  setFeaturedOnly: (v: boolean) => void;
+  search: string;
+  setSearch: (s: string) => void;
+}> = ({ categories, activeCategory, onCategoryChange, projectCounts, years, yearFilter, setYearFilter, featuredOnly, setFeaturedOnly, search, setSearch }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      whileHover={{ y: -10 }}
-      className="group relative overflow-hidden rounded-3xl cursor-pointer aspect-[16/9]"
-    >
-      {/* Image */}
-      <div className="absolute inset-0">
-        <img 
-          src={project.image} 
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+    <aside className="hidden lg:block w-72 sticky top-28 h-[calc(100vh-6.5rem)] pr-8">
+      <div className="glass p-6 rounded-2xl h-full flex flex-col">
+        <h4 className="text-sm text-slate-400 uppercase tracking-wider mb-4">Curate</h4>
+        <input
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search projects, clients..."
+          className="mb-4 w-full bg-transparent border border-slate-800 rounded-md px-3 py-2 text-sm text-slate-200 placeholder-slate-500"
         />
-      </div>
 
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      {/* Play Button */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-400">
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          className="w-20 h-20 rounded-full bg-black/60 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-[0_0_40px_rgba(212,175,55,0.6)]"
-        >
-          <Play className="w-8 h-8 text-white ml-1 fill-white" />
-        </motion.div>
-      </div>
-
-      {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-8">
-        {project.client && (
-          <p className="text-[#d4af37] text-xs uppercase tracking-[0.2em] font-semibold mb-2">
-            {project.client}
-          </p>
-        )}
-        <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
-          {project.title}
-        </h3>
-        <p className="text-slate-300 text-sm mb-4 max-w-2xl">
-          {project.description}
-        </p>
-        <div className="flex items-center gap-4 text-xs text-slate-400">
-          <span className="uppercase tracking-wider">{project.category}</span>
-          <span>•</span>
-          <span>{project.year}</span>
-          {project.views && (
-            <>
-              <span>•</span>
-              <span>{project.views} views</span>
-            </>
-          )}
-        </div>
-        {project.awards && project.awards.length > 0 && (
-          <div className="mt-4 flex items-center gap-2">
-            <Award className="w-4 h-4 text-[#d4af37]" />
-            <span className="text-[#d4af37] text-xs font-semibold">
-              {project.awards[0]}
-            </span>
+        <div className="mb-4">
+          <p className="text-xs text-slate-500 uppercase mb-2">Categories</p>
+          <div className="flex flex-col gap-2">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => onCategoryChange(cat)}
+                className={`text-left py-2 px-3 rounded-md text-sm transition-colors duration-200 ${activeCategory === cat ? 'bg-[#d4af37] text-[#050505] font-semibold' : 'text-slate-300 hover:bg-white/5'}`}
+              >
+                {cat} <span className="text-slate-500 text-xs ml-2">{projectCounts?.[cat]}</span>
+              </button>
+            ))}
           </div>
-        )}
-      </div>
+        </div>
 
-      {/* Gold Glow Border on Hover */}
-      <div className="absolute inset-0 border-2 border-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-    </motion.div>
+        <div className="mb-4">
+          <p className="text-xs text-slate-500 uppercase mb-2">Year</p>
+          <select
+            value={yearFilter}
+            onChange={e => setYearFilter(e.target.value as any)}
+            className="w-full bg-transparent border border-slate-800 rounded-md px-3 py-2 text-sm text-slate-200"
+          >
+            <option value="All">All</option>
+            {years.map(y => (
+              <option key={y} value={y}>{y}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mt-auto">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" checked={featuredOnly} onChange={e => setFeaturedOnly(e.target.checked)} className="accent-[#d4af37]" />
+            <span className="text-sm text-slate-300">Show featured only</span>
+          </label>
+
+          <p className="text-xs text-slate-500 mt-4">Tip: Use the search to quickly find case studies.</p>
+        </div>
+      </div>
+    </aside>
   );
 };
+
+// Mobile filter drawer
+const MobileFilterDrawer: React.FC<{
+  open: boolean;
+  onClose: () => void;
+  categories: string[];
+  activeCategory: string;
+  onCategoryChange: (c: string) => void;
+  years: string[];
+  yearFilter: string | 'All';
+  setYearFilter: (y: string | 'All') => void;
+  featuredOnly: boolean;
+  setFeaturedOnly: (v: boolean) => void;
+  search: string;
+  setSearch: (s: string) => void;
+}> = ({ open, onClose, categories, activeCategory, onCategoryChange, years, yearFilter, setYearFilter, featuredOnly, setFeaturedOnly, search, setSearch }) => {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex">
+      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
+      <div className="ml-auto w-full max-w-md bg-[#070707] p-6 glass h-full overflow-auto">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold">Filters</h3>
+          <button onClick={onClose} className="text-slate-400">Close</button>
+        </div>
+
+        <input
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search projects, clients..."
+          className="mb-4 w-full bg-transparent border border-slate-800 rounded-md px-3 py-2 text-sm text-slate-200 placeholder-slate-500"
+        />
+
+        <div className="mb-4">
+          <p className="text-xs text-slate-500 uppercase mb-2">Categories</p>
+          <div className="flex gap-2 flex-wrap">
+            {categories.map(cat => (
+              <button key={cat} onClick={() => onCategoryChange(cat)} className={`px-3 py-1 rounded-full text-sm ${activeCategory === cat ? 'bg-[#d4af37] text-[#050505]' : 'bg-transparent border border-slate-800 text-slate-300'}`}>
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <p className="text-xs text-slate-500 uppercase mb-2">Year</p>
+          <select value={yearFilter} onChange={e => setYearFilter(e.target.value as any)} className="w-full bg-transparent border border-slate-800 rounded-md px-3 py-2 text-sm text-slate-200">
+            <option value="All">All</option>
+            {years.map(y => <option key={y} value={y}>{y}</option>)}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" checked={featuredOnly} onChange={e => setFeaturedOnly(e.target.checked)} className="accent-[#d4af37]" />
+            <span className="text-sm text-slate-300">Featured only</span>
+          </label>
+        </div>
+
+        <div className="pt-4 border-t border-slate-800 mt-6">
+          <button onClick={onClose} className="w-full py-3 rounded-md bg-[#d4af37] text-[#050505] font-semibold">Apply filters</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// FeaturedProjectCard removed — recognition section simplified and spotlight removed
 
 // Standard Project Card Component
 const ProjectCard: React.FC<{ project: Project; index: number }> = ({ 
@@ -356,12 +414,25 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({
 
 const Projects: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [yearFilter, setYearFilter] = useState<'All' | string>('All');
+  const [featuredOnly, setFeaturedOnly] = useState(false);
+  const [search, setSearch] = useState('');
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
-    : projects.filter(p => p.category === activeCategory);
+  const filteredProjects = projects
+    .filter(p => (activeCategory === 'All' ? true : p.category === activeCategory))
+    .filter(p => (yearFilter === 'All' ? true : p.year === yearFilter))
+    .filter(p => (featuredOnly ? !!p.featured : true))
+    .filter(p => {
+      if (!search) return true;
+      const q = search.toLowerCase();
+      return (
+        p.title.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        (p.client || '').toLowerCase().includes(q)
+      );
+    });
 
-  const featuredProjects = projects.filter(p => p.featured);
   const regularProjects = filteredProjects.filter(p => !p.featured);
 
   // Calculate project counts for each category
@@ -372,6 +443,9 @@ const Projects: React.FC = () => {
   categories.slice(1).forEach(category => {
     projectCounts[category] = projects.filter(p => p.category === category).length;
   });
+
+  // unique years for filter
+  const years = Array.from(new Set(projects.map(p => p.year))).sort((a, b) => Number(b) - Number(a));
 
   return (
     <div className="min-h-screen bg-[#050505]">
@@ -391,44 +465,25 @@ const Projects: React.FC = () => {
       />
 
       {/* ============================================
-          2. FILTER & CATEGORY SYSTEM
+          2. FILTER & CATEGORY SYSTEM (unique sidebar + mobile drawer)
       ============================================ */}
-      <section className="py-12 px-6 bg-[#050505]">
+      <section className=" pb-4 px-2 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
-          <FilterBar 
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-            projectCounts={projectCounts}
-          />
+          {/* horizontal chip bar remains for small screens */}
+          <div className="lg:hidden mb-4">
+            <FilterBar 
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+              projectCounts={projectCounts}
+            />
+          </div>
+
+          {/* mobile filter button */}
         </div>
       </section>
 
-      {/* ============================================
-          3. FEATURED PROJECTS (HERO PROJECTS)
-      ============================================ */}
-      {activeCategory === 'All' && featuredProjects.length > 0 && (
-        <section className="py-12 px-6 bg-[#050505]">
-          <div className="max-w-7xl mx-auto">
-            <SectionTitle 
-              subtitle="Featured Work"
-              title="Spotlight Projects"
-              align="left"
-              className="mb-12"
-            />
-
-            <div className="grid lg:grid-cols-2 gap-8">
-              {featuredProjects.slice(0, 2).map((project, index) => (
-                <FeaturedProjectCard 
-                  key={project.id}
-                  project={project}
-                  index={index}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Featured projects removed per request */}
 
       {/* ============================================
           4. ALL PROJECTS GRID
@@ -442,53 +497,95 @@ const Projects: React.FC = () => {
             className="mb-12"
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {regularProjects.map((project, index) => (
-              <ProjectCard 
-                key={project.id}
-                project={project}
-                index={index}
-              />
-            ))}
+          <div className="lg:flex lg:gap-10">
+            {/* Sidebar for large screens */}
+            <FilterSidebar
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+              projectCounts={projectCounts}
+              years={years}
+              yearFilter={yearFilter}
+              setYearFilter={setYearFilter}
+              featuredOnly={featuredOnly}
+              setFeaturedOnly={setFeaturedOnly}
+              search={search}
+              setSearch={setSearch}
+            />
+
+            {/* Projects grid */}
+            <div className="flex-1">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {regularProjects.map((project, index) => (
+                  <ProjectCard 
+                    key={project.id}
+                    project={project}
+                    index={index}
+                  />
+                ))}
+              </div>
+
+              {regularProjects.length === 0 && (
+                <div className="text-center py-20">
+                  <p className="text-slate-400 text-lg">No projects found with this filter set.</p>
+                </div>
+              )}
+            </div>
           </div>
 
-          {regularProjects.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-slate-400 text-lg">No projects found in this category.</p>
-            </div>
-          )}
+          {/* mobile floating filter button + drawer */}
+          <div>
+            <button onClick={() => setMobileFilterOpen(true)} className="lg:hidden fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#d4af37] text-[#050505] flex items-center justify-center shadow-lg">
+              <Play className="w-6 h-6" />
+            </button>
+            <MobileFilterDrawer
+              open={mobileFilterOpen}
+              onClose={() => setMobileFilterOpen(false)}
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+              years={years}
+              yearFilter={yearFilter}
+              setYearFilter={setYearFilter}
+              featuredOnly={featuredOnly}
+              setFeaturedOnly={setFeaturedOnly}
+              search={search}
+              setSearch={setSearch}
+            />
+          </div>
         </div>
       </section>
 
       {/* ============================================
-          6. AWARDS & RECOGNITIONS
+          6. AWARDS & RECOGNITIONS (streamlined recognition band)
       ============================================ */}
-      <section className="py-24 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
+      <section className="py-16 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Recognition"
             title="Awards & Festival Selections"
             align="center"
-            className="mb-16"
+            className="mb-10"
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {awards.map((award, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="glass p-6 rounded-2xl text-center hover:bg-white/10 transition-all duration-300 group"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <award.icon className="w-8 h-8 text-[#050505]" />
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <p className="text-slate-400 max-w-2xl text-center lg:text-left">
+              Our work has been acknowledged by international festivals and industry bodies — these selections and awards reflect long-form collaborations and creative excellence rather than trophies on a shelf.
+            </p>
+
+            <div className="flex items-center gap-6 overflow-x-auto hide-scrollbar py-2">
+              {awards.map((award, i) => (
+                <div key={i} className="flex items-center gap-3 min-w-[220px]">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-[#d4af37] to-[#c29b24]">
+                    <award.icon className="w-6 h-6 text-[#050505]" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">{award.name}</div>
+                    <div className="text-xs text-slate-400">{award.count}</div>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{award.name}</h3>
-                <p className="text-[#d4af37] text-sm font-semibold">{award.count}</p>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>

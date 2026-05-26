@@ -240,10 +240,10 @@ const Contact: React.FC = () => {
         // scrollLabel="Get in Touch"
       />
 
-      {/* ============================================
+        {/* ============================================
           2. QUICK CONTACT OPTIONS
-      ============================================ */}
-      <section className="py-24 px-6 bg-[#050505]">
+        ============================================ */}
+        <section className="py-12 px-6 bg-[#050505]">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
             subtitle="Get in Touch"
@@ -289,10 +289,10 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      {/* ============================================
+        {/* ============================================
           3. PROJECT INQUIRY FORM
-      ============================================ */}
-      <section className="py-24 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
+        ============================================ */}
+        <section className="py-12 px-6 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
         <div className="max-w-4xl mx-auto">
           <SectionTitle 
             subtitle="Start Your Project"
@@ -512,10 +512,10 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      {/* ============================================
+        {/* ============================================
           4. HOW WE WORK SECTION
-      ============================================ */}
-      <section className="py-24 px-6 bg-[#0a0a0a]">
+        ============================================ */}
+        <section className="py-12 px-6 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Our Process"
@@ -553,10 +553,10 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      {/* ============================================
+        {/* ============================================
           5. FAQ SECTION
-      ============================================ */}
-      <section className="py-24 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
+        ============================================ */}
+        <section className="py-12 px-6 bg-gradient-to-b from-[#0a0a0a] to-[#050505]">
         <div className="max-w-4xl mx-auto">
           <SectionTitle 
             subtitle="Common Questions"
@@ -600,10 +600,10 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      {/* ============================================
+        {/* ============================================
           6. OFFICE LOCATION SECTION
-      ============================================ */}
-      <section id="map" className="py-24 px-6 bg-[#050505]">
+        ============================================ */}
+        <section id="map" className="py-12 px-6 bg-[#050505]">
         <div className="max-w-6xl mx-auto">
           <SectionTitle 
             subtitle="Visit Us"

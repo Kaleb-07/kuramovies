@@ -66,11 +66,11 @@ export const SplitHeroSection: React.FC<SplitHeroSectionProps> = ({
 
                 {badge && (
                   <>
-                    <div className="absolute -top-6 left-8 h-14 w-14 rounded-full bg-white flex items-center justify-center shadow-lg">
-                      <div className="h-5 w-5 rounded-full bg-[#d4af37]" />
-                    </div>
+                        <div className="hidden sm:flex absolute -top-6 left-8 h-14 w-14 rounded-full bg-white flex items-center justify-center shadow-lg">
+                          <div className="h-5 w-5 rounded-full bg-[#d4af37]" />
+                        </div>
 
-                    <div className="absolute top-1/2 right-0 z-20 -translate-y-1/2 translate-x-1/4 rounded-full bg-white px-4 py-2.5 shadow-2xl border border-white/20">
+                    <div className="hidden md:flex absolute top-1/2 right-0 z-20 -translate-y-1/2 translate-x-1/4 rounded-full bg-white px-4 py-2.5 shadow-2xl border border-white/20">
                       <div className="flex items-center gap-2.5">
                         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0d5ea8] text-white">
                           <span className="text-base font-bold">★</span>

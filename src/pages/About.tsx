@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Award, 
-  Globe, 
-  Heart, 
-  Sparkles, 
-  Target, 
-  Users, 
+import {
+  Award,
+  Globe,
+  Heart,
+  Sparkles,
+  Target,
+  Users,
   Film,
   TrendingUp,
   Eye,
   MapPin,
-  Trophy
+  Trophy,
+  ArrowRight,
 } from 'lucide-react';
 import { SectionTitle } from '../components/cinematic/SectionTitle';
 import { SplitHeroSection } from '../components/cinematic/SplitHeroSection';
@@ -39,15 +40,15 @@ const TimelineItem: React.FC<{ year: string; title: string; description: string;
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="relative flex items-center gap-8 group"
+      className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6 group"
     >
       {/* Year Badge */}
-      <div className="shrink-0 w-24 h-24 rounded-full bg-linear-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-        <span className="text-2xl font-bold text-[#050505]">{year}</span>
+      <div className="shrink-0 w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-linear-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+        <span className="text-lg sm:text-2xl font-bold text-[#050505]">{year}</span>
       </div>
 
       {/* Content */}
-      <div className="glass p-6 rounded-xl flex-1 hover:bg-white/10 transition-all duration-300">
+      <div className="p-4 md:p-6 md:glass rounded-none md:rounded-xl flex-1 hover:bg-white/10 transition-all duration-300">
         <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
         <p className="text-slate-400 leading-relaxed">{description}</p>
       </div>
@@ -68,7 +69,7 @@ const ValueCard: React.FC<{ icon: React.ReactNode; title: string; description: s
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       whileHover={{ y: -10 }}
-      className="glass p-8 rounded-2xl text-center hover:bg-white/10 transition-all duration-300 group"
+      className="p-6 md:p-8 md:glass rounded-none md:rounded-2xl text-left md:text-center hover:bg-white/10 transition-all duration-300 group"
     >
       <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-linear-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
         {icon}
@@ -84,6 +85,43 @@ const ValueCard: React.FC<{ icon: React.ReactNode; title: string; description: s
 // ============================================
 
 const About: React.FC = () => {
+  const [selectedValueIndex, setSelectedValueIndex] = useState<number>(0);
+
+  const [openMissionIndex, setOpenMissionIndex] = useState<number | null>(null);
+
+  const values = [
+    {
+      icon: <Heart className="w-5 h-5 text-[#050505]" />,
+      title: 'Authenticity',
+      description:
+        'We tell real stories with genuine voices, honoring the truth of African experiences without compromise.',
+    },
+    {
+      icon: <Award className="w-5 h-5 text-[#050505]" />,
+      title: 'Excellence',
+      description: 'World-class production standards in every frame, from pre-production to final delivery.',
+    },
+    {
+      icon: <Globe className="w-5 h-5 text-[#050505]" />,
+      title: 'Cultural Pride',
+      description: 'Celebrating the richness and diversity of African cultures through powerful visual storytelling.',
+    },
+    {
+      icon: <Sparkles className="w-5 h-5 text-[#050505]" />,
+      title: 'Innovation',
+      description: 'Pushing creative boundaries with cutting-edge techniques while respecting timeless storytelling principles.',
+    },
+    {
+      icon: <Film className="w-5 h-5 text-[#050505]" />,
+      title: 'Storytelling Power',
+      description: 'Crafting narratives that move audiences emotionally and leave lasting cultural impact.',
+    },
+    {
+      icon: <Users className="w-5 h-5 text-[#050505]" />,
+      title: 'Collaboration',
+      description: 'Building strong partnerships with clients, crews, and communities to create magic together.',
+    },
+  ];
   return (
     <div className="min-h-screen bg-[#050505]">
       
@@ -178,43 +216,87 @@ const About: React.FC = () => {
             className="mb-16"
           />
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Mission Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="glass p-10 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
-            >
-              <div className="w-16 h-16 mb-6 rounded-full bg-linear-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Target className="w-8 h-8 text-[#050505]" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Our Mission</h3>
-              <p className="text-slate-300 leading-relaxed text-lg">
-                Creating powerful cinematic experiences that celebrate African identity and culture, 
-                while delivering world-class production value that competes on the global stage.
-              </p>
-            </motion.div>
+          <div>
+            {/* Desktop cards (md+) */}
+            <div className="hidden md:grid md:grid-cols-2 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="p-6 md:p-10 md:glass rounded-none md:rounded-2xl hover:bg-white/10 transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 mb-6 rounded-full bg-linear-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Target className="w-8 h-8 text-[#050505]" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">Our Mission</h3>
+                <p className="text-slate-300 leading-relaxed text-lg">
+                  Creating powerful cinematic experiences that celebrate African identity and culture, 
+                  while delivering world-class production value that competes on the global stage.
+                </p>
+              </motion.div>
 
-            {/* Vision Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass p-10 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
-            >
-              <div className="w-16 h-16 mb-6 rounded-full bg-linear-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Eye className="w-8 h-8 text-[#050505]" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Our Vision</h3>
-              <p className="text-slate-300 leading-relaxed text-lg">
-                To become the leading African production company recognized globally for authentic 
-                storytelling, technical excellence, and cultural impact that shapes how the world 
-                sees Africa.
-              </p>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="p-6 md:p-10 md:glass rounded-none md:rounded-2xl hover:bg-white/10 transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 mb-6 rounded-full bg-linear-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Eye className="w-8 h-8 text-[#050505]" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">Our Vision</h3>
+                <p className="text-slate-300 leading-relaxed text-lg">
+                  To become the leading African production company recognized globally for authentic 
+                  storytelling, technical excellence, and cultural impact that shapes how the world 
+                  sees Africa.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Mobile flat list (Option A) */}
+            <div className="md:hidden">
+              {[
+                {
+                  key: 'mission',
+                  icon: <Target className="w-5 h-5 text-[#050505]" />, 
+                  title: 'Our Mission',
+                  text: 'Creating powerful cinematic experiences that celebrate African identity and culture, while delivering world-class production value that competes on the global stage.'
+                },
+                {
+                  key: 'vision',
+                  icon: <Eye className="w-5 h-5 text-[#050505]" />,
+                  title: 'Our Vision',
+                  text: 'To become the leading African production company recognized globally for authentic storytelling, technical excellence, and cultural impact that shapes how the world sees Africa.'
+                }
+              ].map((item, idx) => {
+                const open = openMissionIndex === idx;
+                return (
+                  <div key={item.key} className="border-b border-white/6">
+                    <button
+                      onClick={() => setOpenMissionIndex(open ? null : idx)}
+                      aria-expanded={open}
+                      className="w-full flex items-center justify-between gap-4 py-4"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-white/6 flex items-center justify-center">{item.icon}</div>
+                        <div className="text-left">
+                          <div className="font-semibold text-white">{item.title}</div>
+                        </div>
+                      </div>
+                      <div className={`text-[#d4af37] transition-transform duration-200 ${open ? 'rotate-90' : ''}`}>
+                        <ArrowRight size={18} />
+                      </div>
+                    </button>
+
+                    <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-40 py-3' : 'max-h-0'}`}>
+                      <p className="text-slate-300">{item.text}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
@@ -231,37 +313,37 @@ const About: React.FC = () => {
             className="mb-16"
           />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <ValueCard 
-              icon={<Heart className="w-8 h-8 text-[#050505]" />}
-              title="Authenticity"
-              description="We tell real stories with genuine voices, honoring the truth of African experiences without compromise."
-            />
-            <ValueCard 
-              icon={<Award className="w-8 h-8 text-[#050505]" />}
-              title="Excellence"
-              description="World-class production standards in every frame, from pre-production to final delivery."
-            />
-            <ValueCard 
-              icon={<Globe className="w-8 h-8 text-[#050505]" />}
-              title="Cultural Pride"
-              description="Celebrating the richness and diversity of African cultures through powerful visual storytelling."
-            />
-            <ValueCard 
-              icon={<Sparkles className="w-8 h-8 text-[#050505]" />}
-              title="Innovation"
-              description="Pushing creative boundaries with cutting-edge techniques while respecting timeless storytelling principles."
-            />
-            <ValueCard 
-              icon={<Film className="w-8 h-8 text-[#050505]" />}
-              title="Storytelling Power"
-              description="Crafting narratives that move audiences emotionally and leave lasting cultural impact."
-            />
-            <ValueCard 
-              icon={<Users className="w-8 h-8 text-[#050505]" />}
-              title="Collaboration"
-              description="Building strong partnerships with clients, crews, and communities to create magic together."
-            />
+          <div>
+            {/* Mobile: Pills */}
+            <div className="md:hidden">
+              <div className="flex gap-3 overflow-x-auto py-2 px-2">
+                {values.map((v, i) => (
+                  <button
+                    key={v.title}
+                    onClick={() => setSelectedValueIndex(i)}
+                    className={`flex items-center gap-3 shrink-0 px-4 py-2 rounded-full transition-colors duration-200 ${
+                      selectedValueIndex === i
+                        ? 'bg-[#d4af37] text-[#050505]'
+                        : 'bg-white/6 text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">{v.icon}</span>
+                    <span className="font-semibold text-sm">{v.title}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-6 text-center">
+                <p className="text-slate-300 max-w-3xl mx-auto">{values[selectedValueIndex].description}</p>
+              </div>
+            </div>
+
+            {/* Desktop: Value cards grid */}
+            <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+              {values.map((v) => (
+                <ValueCard key={v.title} icon={v.icon} title={v.title} description={v.description} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -348,7 +430,7 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="glass p-12 rounded-2xl"
+            className="p-6 md:p-12 md:glass rounded-none md:rounded-2xl"
           >
             <blockquote className="text-2xl md:text-3xl text-center text-slate-200 leading-relaxed mb-8 italic font-serif">
               "The African Cinematic Renaissance is not coming. It is already here, fueled by 
@@ -445,7 +527,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="glass p-8 rounded-2xl text-center hover:bg-white/10 transition-all duration-300"
+              className="p-6 md:p-8 md:glass rounded-none md:rounded-2xl text-left md:text-center hover:bg-white/10 transition-all duration-300"
             >
               <MapPin className="w-12 h-12 text-[#d4af37] mx-auto mb-4" />
               <h3 className="text-xl font-bold text-white mb-3">Continental Presence</h3>
@@ -459,7 +541,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="glass p-8 rounded-2xl text-center hover:bg-white/10 transition-all duration-300"
+              className="p-6 md:p-8 md:glass rounded-none md:rounded-2xl text-left md:text-center hover:bg-white/10 transition-all duration-300"
             >
               <Trophy className="w-12 h-12 text-[#d4af37] mx-auto mb-4" />
               <h3 className="text-xl font-bold text-white mb-3">Festival Recognition</h3>
@@ -473,7 +555,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass p-8 rounded-2xl text-center hover:bg-white/10 transition-all duration-300"
+              className="p-6 md:p-8 md:glass rounded-none md:rounded-2xl text-left md:text-center hover:bg-white/10 transition-all duration-300"
             >
               <TrendingUp className="w-12 h-12 text-[#d4af37] mx-auto mb-4" />
               <h3 className="text-xl font-bold text-white mb-3">Cultural Impact</h3>

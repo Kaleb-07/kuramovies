@@ -297,104 +297,79 @@ const ProcessStepCard: React.FC<{ step: ProcessStep; index: number; isLast: bool
 // Why Choose Card Component
 const WhyChooseCard: React.FC<{ item: WhyChooseItem; index: number }> = ({ item, index }) => {
   const Icon = item.icon;
-  
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
-        type: "spring",
-        stiffness: 120
+      transition={{
+        duration: 0.55,
+        delay: index * 0.08,
+        type: 'spring',
+        stiffness: 110,
       }}
-      whileHover={{ 
-        scale: 1.05,
-        rotate: 2,
-        transition: { duration: 0.3 }
-      }}
-      className="relative group"
+      whileHover={{ scale: 1.01 }}
+      className="relative py-6 md:py-8"
     >
-      {/* Hexagonal background effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" />
-      
-      <div className="relative glass p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 overflow-hidden border border-white/5 group-hover:border-[#d4af37]/30">
-        
-        {/* Animated corner lines */}
-        <motion.div
-          className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-[#d4af37] rounded-tl-2xl"
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-[#d4af37] rounded-br-2xl"
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
-        />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#d4af37]/70 to-transparent opacity-70" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* Icon with orbital animation */}
-        <div className="relative w-16 h-16 mb-5 mx-auto">
-          <motion.div
-            className="absolute inset-0 rounded-full border border-[#d4af37]/30"
-            animate={{
-              rotate: 360,
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-          <motion.div 
-            className="relative w-full h-full rounded-full bg-gradient-to-br from-[#d4af37] to-[#c29b24] flex items-center justify-center shadow-lg"
-            whileHover={{ 
-              scale: 1.2,
-              rotate: 180,
-            }}
-            transition={{ duration: 0.5 }}
-          >
-            <Icon className="w-7 h-7 text-[#050505]" />
-          </motion.div>
+      <div className="grid gap-4 md:grid-cols-[auto_1fr_auto] md:items-center md:gap-8">
+        <div className="flex items-center gap-4">
+          <div className="relative shrink-0">
+            <div className="absolute inset-0 rounded-full bg-[#d4af37]/15 blur-md" />
+            <motion.div
+              className="relative flex h-12 w-12 items-center justify-center rounded-full border border-[#d4af37]/35 bg-[#0b0b0c]/90"
+              whileHover={{ rotate: 8, scale: 1.06 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Icon className="h-6 w-6 text-[#f2d57a]" />
+            </motion.div>
+          </div>
+
+          <div className="md:hidden text-[11px] uppercase tracking-[0.28em] text-[#d4af37]/70">
+            0{index + 1}
+          </div>
         </div>
 
-        {/* Title */}
-        <motion.h3 
-          className="text-lg font-bold text-white mb-3 text-center group-hover:text-[#d4af37] transition-colors duration-300"
-          whileHover={{ scale: 1.05 }}
-        >
-          {item.title}
-        </motion.h3>
+        <div className="min-w-0">
+          <div className="hidden md:block mb-2 text-[11px] uppercase tracking-[0.28em] text-[#d4af37]/70">
+            0{index + 1}
+          </div>
 
-        {/* Description */}
-        <p className="text-slate-400 text-sm leading-relaxed text-center group-hover:text-slate-300 transition-colors duration-300">
-          {item.description}
-        </p>
+          <motion.h3
+            className="text-xl sm:text-2xl font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-[#f2d57a]"
+            whileHover={{ x: 3 }}
+          >
+            {item.title}
+          </motion.h3>
 
-        {/* Floating dot animation */}
-        <motion.div
-          className="absolute top-4 right-4 w-2 h-2 bg-[#d4af37] rounded-full"
-          animate={{
-            y: [-5, 5, -5],
-            opacity: [0.3, 1, 0.3],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-300 sm:text-[15px] sm:text-slate-400">
+            {item.description}
+          </p>
+
+          <div className="mt-4 flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-[#d4af37]/80">
+            <span className="h-px w-10 bg-[#d4af37]/60" />
+            Luxury Craft
+          </div>
+        </div>
+
+        <div className="hidden md:flex items-center gap-3 text-[#d4af37]/70">
+          <span className="h-px w-10 bg-[#d4af37]/40" />
+          <span className="text-xs uppercase tracking-[0.35em]">Premium</span>
+        </div>
       </div>
+
+      <motion.div
+        className="absolute bottom-4 right-4 h-2 w-2 rounded-full bg-[#d4af37]"
+        animate={{ opacity: [0.35, 1, 0.35], scale: [0.9, 1.2, 0.9] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+      />
     </motion.div>
   );
 };
 
-// ============================================
-// MAIN SERVICES PAGE COMPONENT
 // ============================================
 
 const Services: React.FC = () => {
@@ -515,8 +490,7 @@ const Services: React.FC = () => {
       <section className="relative py-24 px-6 bg-[#050505] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Side - Content with solid background */}
+            {/* Left Side - Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -524,14 +498,12 @@ const Services: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="relative z-10"
             >
-              {/* Decorative dots pattern */}
               <div className="absolute -left-8 top-0 grid grid-cols-4 gap-2 opacity-20">
                 {[...Array(16)].map((_, i) => (
                   <div key={i} className="w-1 h-1 bg-[#d4af37] rounded-full" />
                 ))}
               </div>
 
-              {/* Small label */}
               <motion.p
                 className="text-[#d4af37] text-sm uppercase tracking-[0.3em] mb-4 font-semibold flex items-center gap-3"
                 initial={{ opacity: 0, y: 20 }}
@@ -544,7 +516,6 @@ const Services: React.FC = () => {
                 <span className="w-8 h-0.5 bg-[#d4af37]" />
               </motion.p>
 
-              {/* Main heading */}
               <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
@@ -556,7 +527,6 @@ const Services: React.FC = () => {
                 <span className="text-gradient">Your Story?</span>
               </motion.h2>
 
-              {/* Description */}
               <motion.p
                 className="text-slate-300 text-lg leading-relaxed mb-6"
                 initial={{ opacity: 0, y: 20 }}
@@ -580,7 +550,6 @@ const Services: React.FC = () => {
                 cultural sensitivity to every project.
               </motion.p>
 
-              {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -594,7 +563,6 @@ const Services: React.FC = () => {
                 </Link>
               </motion.div>
 
-              {/* Decorative dots pattern bottom */}
               <div className="absolute -left-4 bottom-8 grid grid-cols-3 gap-2 opacity-20">
                 {[...Array(12)].map((_, i) => (
                   <div key={i} className="w-1 h-1 bg-[#d4af37] rounded-full" />
@@ -608,7 +576,7 @@ const Services: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative h-[500px] rounded-3xl overflow-hidden"
+              className="hidden lg:block relative h-[500px] rounded-3xl overflow-hidden"
             >
               {/* Diagonal overlay effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/20 via-transparent to-transparent z-10" />
@@ -704,7 +672,7 @@ const Services: React.FC = () => {
             className="mb-16"
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mx-auto max-w-5xl divide-y divide-white/8 border-y border-white/8">
             {whyChooseItems.map((item, index) => (
               <WhyChooseCard key={index} item={item} index={index} />
             ))}

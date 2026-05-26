@@ -22,6 +22,38 @@ const services = [
   'Post-Production & Color Grading',
 ];
 
+function MobileServicesAccordion({ services }: { services: string[] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="mx-4">
+      {services.map((s, i) => {
+        const open = openIndex === i;
+        return (
+          <div key={s} className="border-b border-white/6">
+            <button
+              onClick={() => setOpenIndex(open ? null : i)}
+              aria-expanded={open}
+              className="w-full py-4 flex items-center justify-between text-left"
+            >
+              <div>
+                <div className="text-sm font-semibold text-white">{s}</div>
+              </div>
+              <div className={`text-[#d4af37] transition-transform duration-200 ${open ? 'rotate-90' : ''}`}>
+                <ArrowRight size={18} />
+              </div>
+            </button>
+
+            <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-40 py-3' : 'max-h-0'}`}>
+              <p className="text-[13px] text-[#cfd8e3]">World-class production with authentic African storytelling.</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 const stats = [
   { value: '100+', label: 'Productions Completed' },
   { value: '35M+', label: 'Audience Reach' },
@@ -90,11 +122,11 @@ const Home = () => {
               className="relative flex justify-center lg:justify-start"
             >
               <div className="relative w-full max-w-[430px]">
-                <div className="absolute -top-6 left-8 h-14 w-14 rounded-full bg-white flex items-center justify-center shadow-lg">
+                <div className="hidden sm:flex absolute -top-6 left-8 h-14 w-14 rounded-full bg-white items-center justify-center shadow-lg">
                   <div className="h-5 w-5 rounded-full bg-[#d4af37]" />
                 </div>
 
-                <div className="absolute top-1/2 right-0 z-20 -translate-y-1/2 translate-x-1/4 rounded-full bg-white px-4 py-2.5 shadow-2xl border border-white/20">
+                <div className="hidden md:flex absolute top-1/2 right-0 z-20 -translate-y-1/2 translate-x-1/4 rounded-full bg-white px-4 py-2.5 shadow-2xl border border-white/20">
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0d5ea8] text-white">
                       <span className="text-base font-bold">★</span>
@@ -110,7 +142,7 @@ const Home = () => {
                   <img
                     src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1800&auto=format&fit=crop"
                     alt="Creative team filming"
-                    className="h-[360px] w-full object-cover"
+                    className="h-[220px] sm:h-[300px] md:h-[360px] lg:h-[420px] w-full object-cover"
                   />
                 </div>
               </div>
@@ -228,7 +260,7 @@ const Home = () => {
             {/* Cards grid - show all cards on large screens */}
             <div className="mt-10">
               <div className="mx-auto px-4 md:px-0">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+                <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
                   {services.map((service, i) => (
                     <motion.div
                       key={i}
@@ -237,17 +269,21 @@ const Home = () => {
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.04, duration: 0.6 }}
                       whileHover={{ translateY: -6 }}
-                      className="bg-[#f8f5ef] hover:bg-[#d4af37]/15 border border-white/10 hover:border-[#d4af37]/40 shadow-[0_12px_30px_rgba(0,0,0,0.28)] p-4 min-h-[155px] flex flex-col items-center justify-center text-center rounded-none transition-colors duration-300"
+                      className="bg-[#f8f5ef] hover:bg-[#d4af37]/15 border border-white/10 hover:border-[#d4af37]/40 shadow-[0_12px_30px_rgba(0,0,0,0.28)] p-4 min-h-[120px] sm:min-h-[155px] flex flex-col sm:items-center items-start justify-center text-left sm:text-center rounded-2xl transition-colors duration-300"
                     >
-                      <div className="w-10 h-1 bg-[#d4af37] mb-4" />
-                      <h3 className="text-sm font-semibold text-[#0b1220] mb-2 leading-snug px-2">{service}</h3>
-                      <p className="text-[11px] text-gray-500 leading-relaxed max-w-[160px] px-2">
-                        World-class production with authentic African storytelling.
-                      </p>
+                        <div className="w-10 h-1 bg-[#d4af37] mb-4" />
+                        <h3 className="text-sm font-semibold text-[#0b1220] mb-2 leading-snug px-0 sm:px-2">{service}</h3>
+                        <p className="hidden sm:block text-[11px] text-gray-500 leading-relaxed max-w-[160px] sm:px-2">
+                          World-class production with authentic African storytelling.
+                        </p>
                     </motion.div>
                   ))}
                 </div>
               </div>
+            </div>
+            {/* Mobile Accordion (compact list) */}
+            <div className="md:hidden mt-6">
+              <MobileServicesAccordion services={services} />
             </div>
           </div>
         </div>
@@ -264,7 +300,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="relative grid lg:grid-cols-[1.05fr_0.9fr] gap-14 xl:gap-20 items-center">
+          <div className="hidden lg:grid relative lg:grid-cols-[1.05fr_0.9fr] gap-14 xl:gap-20 items-center">
             <div className="pointer-events-none absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 overflow-visible bg-gradient-to-b from-transparent via-[#4ea0ff] to-transparent">
               <div className="absolute inset-0 -translate-x-1/2 rounded-full bg-[#4ea0ff]/20 blur-xl" />
               <motion.div
@@ -353,6 +389,50 @@ const Home = () => {
               </div>
             </motion.div>
           </div>
+          {/* Mobile layout: stacked active testimonial + horizontal thumbnails */}
+          <div className="lg:hidden mt-6">
+            <motion.div
+              key={activeTestimonialIndex}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative bg-[#0b1220]/10 rounded-2xl p-6 mx-4"
+            >
+              <div className="absolute left-2 top-0 text-[#3e7ed4] text-5xl font-light leading-none select-none">“</div>
+              <div className="pl-6 pt-2">
+                <p className="text-[#9bacc2] text-base leading-7">{activeTestimonial.quote}</p>
+
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-16 w-16 rounded-full overflow-hidden ring-1 ring-black/5 flex-shrink-0">
+                    <img src={activeTestimonial.image} alt={activeTestimonial.name} className="h-full w-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">{activeTestimonial.name}</p>
+                    <p className="text-[#88a0b9] text-sm">{activeTestimonial.location}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="mt-6 px-4">
+              <div className="flex gap-4 overflow-x-auto py-2 scrollbar-hide">
+                {testimonials.map((t, i) => (
+                  <button
+                    key={t.name}
+                    onClick={() => setActiveTestimonialIndex(i)}
+                    className={`flex-shrink-0 w-28 p-2 rounded-xl text-left transition-transform duration-200 ${i === activeTestimonialIndex ? 'scale-105 ring-2 ring-[#4ea0ff]/30' : 'opacity-75 hover:opacity-100'}`}
+                  >
+                    <div className="h-14 w-full rounded-lg overflow-hidden mb-2">
+                      <img src={t.image} alt={t.name} className="h-full w-full object-cover" />
+                    </div>
+                    <div className="text-sm font-semibold text-white truncate">{t.name}</div>
+                    <div className="text-xs text-[#88a0b9] truncate">{t.location}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -373,7 +453,7 @@ const Home = () => {
                 <img
                   src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop"
                   alt="Cinematographer shooting at sunset"
-                  className="w-full h-[420px] object-cover"
+                  className="w-full h-[220px] sm:h-[300px] md:h-[360px] lg:h-[420px] object-cover"
                   loading="lazy"
                 />
               </div>
