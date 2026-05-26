@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown, Check, Globe } from "lucide-react";
+import { ChevronDown, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 declare global {
@@ -44,14 +44,12 @@ const getCookie = (name: string): string | null => {
 export const LanguageSelector: React.FC<{ variant?: "default" | "topbar" }> = ({ variant = "default" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState<Language>(languages[0]);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [isTranslating, setIsTranslating] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const loadScript = () => {
       if (window.google?.translate) {
-        setIsLoaded(true);
         return;
       }
       if (!document.getElementById("google-translate-script")) {
@@ -68,7 +66,6 @@ export const LanguageSelector: React.FC<{ variant?: "default" | "topbar" }> = ({
           includedLanguages: languages.map((l) => l.code).join(","),
           autoDisplay: false,
         }, "google_translate_element");
-        setIsLoaded(true);
       };
     };
 

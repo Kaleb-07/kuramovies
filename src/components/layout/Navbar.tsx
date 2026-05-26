@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, MapPin, Mail, Globe, Search } from 'lucide-react';
+import { Menu, X, MapPin, Mail, Search } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import LanguageSelector from '../ui/LanguageSelector';
 
