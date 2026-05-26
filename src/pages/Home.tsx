@@ -446,7 +446,7 @@ const Home = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="relative hidden md:block"
           >
             <div className="bg-gradient-to-b from-zinc-900 to-zinc-800 p-6 rounded-2xl border border-white/5 shadow-lg">
               <div className="rounded-xl overflow-hidden bg-black">
@@ -495,34 +495,69 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-      <section className="py-[30px] relative overflow-hidden">
+      <section className="py-[30px] relative overflow-hidden bg-[#050505]">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?q=80&w=1920&auto=format&fit=crop"
-            alt="CTA backdrop"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(127,184,255,0.18),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(212,175,55,0.14),_transparent_30%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.03),transparent_40%,rgba(255,255,255,0.02))]" />
         </div>
 
-        <div className="relative z-10 text-center max-w-3xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 px-6 py-10 md:px-12 md:py-14 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-              Ready to Tell Your Story?
-            </h2>
-            <p className="text-xl text-gray-300 mb-10">
-              Let's create something powerful together.
-            </p>
-            <Link to="/contact">
-              <CinematicButton variant="primary" size="lg" className="text-lg px-14 py-5">
-                Start Your Project Today
-              </CinematicButton>
-            </Link>
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent" />
+            <div className="absolute -top-16 right-0 h-40 w-40 rounded-full bg-[#7fb8ff]/10 blur-3xl" />
+            <div className="absolute -bottom-16 left-0 h-40 w-40 rounded-full bg-[#d4af37]/10 blur-3xl" />
+
+            <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+              <div>
+                <div className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#d4af37]">
+                  <span className="h-2 w-2 rounded-full bg-[#d4af37]" />
+                  Let&apos;s build something memorable
+                </div>
+
+                <h2 className="hidden sm:block mt-5 text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight max-w-2xl">
+                  Ready to Tell Your Story?
+                </h2>
+
+                <p className="hidden sm:block mt-5 max-w-xl text-base md:text-lg leading-relaxed text-slate-300">
+                  Bring us your idea, and we&apos;ll turn it into a polished cinematic experience with strong visuals,
+                  clear direction, and professional execution from concept to delivery.
+                </p>
+
+                <div className="mt-0 sm:mt-8 flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
+                  <Link to="/contact">
+                    <CinematicButton variant="primary" size="lg" className="w-full sm:w-auto text-base px-8 py-4">
+                      Start Your Project
+                    </CinematicButton>
+                  </Link>
+                  <Link to="/projects" className="hidden sm:block">
+                    <CinematicButton variant="secondary" size="lg" className="w-full sm:w-auto text-base px-8 py-4">
+                      View Our Work
+                    </CinematicButton>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="hidden lg:grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                {[
+                  { title: 'Creative direction', text: 'Concepts shaped to match your brand and audience.' },
+                  { title: 'Premium production', text: 'High-end visuals, pacing, and on-set professionalism.' },
+                  { title: 'Fast delivery', text: 'A smooth workflow designed to keep your timeline moving.' },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-2xl border border-white/10 bg-[#0b0b0c]/80 px-5 py-4">
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.22em] text-[#d4af37]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-300">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

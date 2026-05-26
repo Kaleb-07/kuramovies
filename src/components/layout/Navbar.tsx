@@ -34,7 +34,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Top Bar - Dark Green */}
       <div className="bg-[#2d5a4a] text-white/90 text-xs">
-        <div className="max-w-7xl mx-auto px-6 py-2.5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-0 flex items-center justify-between">
           {/* Left - Location & Email */}
           <div className="hidden md:flex items-center gap-6">
             <div className="flex items-center gap-2">
@@ -85,7 +85,7 @@ const Navbar = () => {
           scrolled ? 'shadow-lg' : ''
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-0 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#2d5a4a] to-[#1a3a2e] flex items-center justify-center">
@@ -125,19 +125,19 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             {/* Search Button */}
             <button 
-              className="w-10 h-10 rounded-full bg-[#2d5a4a] flex items-center justify-center text-white hover:bg-[#1a3a2e] transition-colors"
+              className="w-9 h-9 rounded-full bg-[#2d5a4a] flex items-center justify-center text-white hover:bg-[#1a3a2e] transition-colors"
               aria-label="Search"
             >
-              <Search size={18} />
+              <Search size={16} />
             </button>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden w-10 h-10 rounded-full border-2 border-[#2d5a4a] flex items-center justify-center text-[#2d5a4a] hover:bg-[#2d5a4a] hover:text-white transition-all duration-300"
+              className="lg:hidden w-9 h-9 rounded-full border-2 border-[#2d5a4a] flex items-center justify-center text-[#2d5a4a] hover:bg-[#2d5a4a] hover:text-white transition-all duration-300"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
+              {isOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>

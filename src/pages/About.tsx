@@ -152,7 +152,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative hidden md:block"
             >
               <div className="aspect-4/5 rounded-2xl overflow-hidden">
                 <img 
