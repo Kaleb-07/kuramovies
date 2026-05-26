@@ -1,15 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kura Films favicon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kura Movies favicon">
 	<defs>
 		<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-			<stop offset="0%" stop-color="#0b0b0b" />
-			<stop offset="100%" stop-color="#151515" />
+			<stop offset="0%" stop-color="#141414" />
+			<stop offset="100%" stop-color="#050505" />
 		</linearGradient>
-		<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-			<stop offset="0%" stop-color="#f4d37a" />
-			<stop offset="100%" stop-color="#d4af37" />
+		<linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0%" stop-color="#fff0bf" />
+			<stop offset="55%" stop-color="#f3c85d" />
+			<stop offset="100%" stop-color="#b27a12" />
 		</linearGradient>
 	</defs>
 	<circle cx="32" cy="32" r="30" fill="url(#bg)" />
-	<circle cx="32" cy="32" r="27" fill="none" stroke="url(#gold)" stroke-width="2.5" />
-	<path d="M22 18h8v11.5L41.5 18H51l-14 15 14 13H41l-11-10.5V46h-8V18z" fill="url(#gold)" />
+	<circle cx="32" cy="32" r="27.5" fill="none" stroke="url(#accent)" stroke-width="2" opacity="0.9" />
+	<rect x="17" y="22" width="30" height="20" rx="4" fill="#1d1d1d" stroke="url(#accent)" stroke-width="2" />
+	<path d="M17 27h30v-5h-30z" fill="url(#accent)" />
+	<path d="M21 22l5 5m3-5l5 5m3-5l5 5m3-5l2 5" stroke="#161616" stroke-width="1.6" stroke-linecap="round" />
+	<path d="M28 29l9 5-9 5z" fill="url(#accent)" />
+	<circle cx="23" cy="39" r="1.2" fill="#fff6cf" opacity="0.95" />
+	<circle cx="41" cy="39" r="1.2" fill="#fff6cf" opacity="0.95" />
 </svg>
